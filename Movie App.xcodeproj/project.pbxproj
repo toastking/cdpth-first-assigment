@@ -8,20 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		C953B2841C5C15630006FAA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C953B2831C5C15630006FAA9 /* AppDelegate.swift */; };
-		C953B2861C5C15630006FAA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C953B2851C5C15630006FAA9 /* ViewController.swift */; };
 		C953B2891C5C15630006FAA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C953B2871C5C15630006FAA9 /* Main.storyboard */; };
 		C953B28B1C5C15630006FAA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C953B28A1C5C15630006FAA9 /* Assets.xcassets */; };
-		C953B28E1C5C15630006FAA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C953B28C1C5C15630006FAA9 /* LaunchScreen.storyboard */; };
+		C953B2961C5C15DA0006FAA9 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C953B2951C5C15DA0006FAA9 /* MoviesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C953B2801C5C15630006FAA9 /* Movie App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C953B2831C5C15630006FAA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C953B2851C5C15630006FAA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C953B2881C5C15630006FAA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C953B28A1C5C15630006FAA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C953B28D1C5C15630006FAA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C953B28F1C5C15630006FAA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C953B2951C5C15DA0006FAA9 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,10 +53,9 @@
 			isa = PBXGroup;
 			children = (
 				C953B2831C5C15630006FAA9 /* AppDelegate.swift */,
-				C953B2851C5C15630006FAA9 /* ViewController.swift */,
 				C953B2871C5C15630006FAA9 /* Main.storyboard */,
 				C953B28A1C5C15630006FAA9 /* Assets.xcassets */,
-				C953B28C1C5C15630006FAA9 /* LaunchScreen.storyboard */,
+				C953B2951C5C15DA0006FAA9 /* MoviesViewController.swift */,
 				C953B28F1C5C15630006FAA9 /* Info.plist */,
 			);
 			path = "Movie App";
@@ -122,7 +119,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C953B28E1C5C15630006FAA9 /* LaunchScreen.storyboard in Resources */,
 				C953B28B1C5C15630006FAA9 /* Assets.xcassets in Resources */,
 				C953B2891C5C15630006FAA9 /* Main.storyboard in Resources */,
 			);
@@ -135,8 +131,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C953B2861C5C15630006FAA9 /* ViewController.swift in Sources */,
 				C953B2841C5C15630006FAA9 /* AppDelegate.swift in Sources */,
+				C953B2961C5C15DA0006FAA9 /* MoviesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,14 +145,6 @@
 				C953B2881C5C15630006FAA9 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		C953B28C1C5C15630006FAA9 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C953B28D1C5C15630006FAA9 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -284,6 +272,7 @@
 				C953B2941C5C15630006FAA9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
