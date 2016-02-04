@@ -54,6 +54,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 }
         })
         task.resume()
+        
+        //add the pull to refresh
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: "refreshAction:", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refresh, atIndex:0)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,6 +96,41 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         print("row  \(indexPath.row)")
         
         return cell
+    }
+    
+    func refreshAction(refreshCtrl : UIRefreshControl){
+        //make the network request
+        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let request = NSURLRequest(
+            URL: url!,
+            cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
+            timeoutInterval: 10)
+        
+        let session = NSURLSession(
+            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+            delegate: nil,
+            delegateQueue: NSOperationQueue.mainQueue()
+        )
+        
+        //do a NSUrl request
+        let task: NSURLSessionDataTask = session.dataTaskWithRequest(request,
+            completionHandler: { (dataOrNil, response, error) in
+                if let data = dataOrNil {
+                    if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
+                        data, options:[]) as? NSDictionary {
+                            print("response: \(responseDictionary)")
+                            
+                            self.movies = responseDictionary["results"] as! [NSDictionary]
+                            
+                            //reload the data from the table view
+                            self.tableView.reloadData()
+                            refreshCtrl.endRefreshing()
+                    }
+                }
+        })
+        
+        task.resume()
     }
 
     /*
