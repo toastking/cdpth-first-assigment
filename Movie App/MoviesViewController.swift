@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -24,40 +25,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
         tableView.delegate = self
         // Do any additional setup after loading the view.
-        
-        //make the network request
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
-        let request = NSURLRequest(
-            URL: url!,
-            cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
-            timeoutInterval: 10)
-        
-        let session = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-            delegate: nil,
-            delegateQueue: NSOperationQueue.mainQueue()
-        )
-        
-        let task: NSURLSessionDataTask = session.dataTaskWithRequest(request,
-            completionHandler: { (dataOrNil, response, error) in
-                if let data = dataOrNil {
-                    if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-                        data, options:[]) as? NSDictionary {
-                            print("response: \(responseDictionary)")
-                            
-                            self.movies = responseDictionary["results"] as! [NSDictionary]
-                            
-                            //reload the data from the table view
-                            self.tableView.reloadData()
-                    }
-                }
-        })
-        task.resume()
+        //load the data
+        loadFromNetwork(nil)
         
         //add the pull to refresh
         let refresh = UIRefreshControl()
-        refresh.addTarget(self, action: "refreshAction:", forControlEvents: UIControlEvents.ValueChanged)
+        refresh.addTarget(self, action: "loadFromNetwork:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refresh, atIndex:0)
         
     }
@@ -98,7 +71,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
-    func refreshAction(refreshCtrl : UIRefreshControl){
+    
+    func loadFromNetwork(refreshCtrl : UIRefreshControl?){
         //make the network request
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
@@ -112,7 +86,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             delegate: nil,
             delegateQueue: NSOperationQueue.mainQueue()
         )
-        
+        //show the HUD
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         //do a NSUrl request
         let task: NSURLSessionDataTask = session.dataTaskWithRequest(request,
             completionHandler: { (dataOrNil, response, error) in
@@ -121,11 +96,18 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                         data, options:[]) as? NSDictionary {
                             print("response: \(responseDictionary)")
                             
+                            //hide the HUD
+                            MBProgressHUD.hideHUDForView(self.view, animated: true)
+                            
                             self.movies = responseDictionary["results"] as! [NSDictionary]
                             
                             //reload the data from the table view
                             self.tableView.reloadData()
-                            refreshCtrl.endRefreshing()
+                            
+                            //stop refreshing if there's a refresh control
+                            if let refreshCtrl = refreshCtrl{
+                                refreshCtrl.endRefreshing()
+                            }
                     }
                 }
         })
