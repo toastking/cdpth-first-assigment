@@ -11,20 +11,34 @@ import UIKit
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var posterImage: UIImageView!
-    
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var scroll: UIScrollView!
+    @IBOutlet weak var info: UIView!
     
     var movie: NSDictionary!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //set the scrollview content size
+        scroll.contentSize = CGSize(width: scroll.frame.size.width, height: info.frame.origin.y + info.frame.height)
         
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
         
         titleLabel.text = title
         overviewLabel.text = overview
+        
+        overviewLabel.sizeToFit()
+        
+        let baseUrl = "http://image.tmdb.org/t/p/w500/"
+        if let posterPath = movie["poster_path"] as? String{
+            let imgUrl = NSURL(string: baseUrl + posterPath)
+            posterImage.setImageWithURL(imgUrl!)
+        }
+        
         // Do any additional setup after loading the view.
     }
 
