@@ -15,6 +15,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        //programatically make the tab bar for the app
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let nowPlayingNavController = storyboard.instantiateViewControllerWithIdentifier("moviesNavigationController") as! UINavigationController
+        let nowPlayingViewController = nowPlayingNavController.topViewController as! MoviesViewController
+        nowPlayingViewController.endpt = "now_playing"
+        
+        //set the tab bar item stuff
+        nowPlayingNavController.tabBarItem.title = "Now Playing"
+        nowPlayingNavController.tabBarItem.image = UIImage(named: "nowplaying")
+        
+        let topRatedNavController = storyboard.instantiateViewControllerWithIdentifier("moviesNavigationController") as! UINavigationController
+        let topRatedViewController = topRatedNavController.topViewController as! MoviesViewController
+        topRatedViewController.endpt = "top_rated"
+        
+        
+        //tab bar item
+        topRatedNavController.tabBarItem.title = "Top Rated"
+        topRatedNavController.tabBarItem.image = UIImage(named: "toprated")
+        
+        //now that the view controllers are made we need to initalize the tab bar
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [nowPlayingNavController,topRatedNavController]
+        
+        //add the tab bar to the window
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+
         // Override point for customization after application launch.
         return true
     }
