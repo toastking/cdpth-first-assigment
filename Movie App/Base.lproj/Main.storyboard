@@ -16,7 +16,8 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="126" sectionHeaderHeight="28" sectionFooterHeight="28" id="ii0-wv-7hv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="0.39533446509961367" blue="0.20503296237952362" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="1" green="0.1968823573" blue="0.0004047529727" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="126" id="R7F-Hd-z9F" customClass="MovieCell" customModule="Movie_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="320" height="126"/>
@@ -45,6 +46,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.19688235729250458" blue="0.0004047529727226884" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="overviewLabel" destination="z9g-IP-R5w" id="YAc-Z8-1Xc"/>
                                             <outlet property="posterView" destination="ueo-Mc-LKo" id="9nS-Zh-egx"/>
@@ -55,7 +57,8 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.50713759816753923" green="0.10476961416636281" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.0001983507256" green="0.077879581150000002" blue="0.023578714850000002" alpha="0.62644060280000002" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Cinemon" id="eZk-aC-H9e"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
